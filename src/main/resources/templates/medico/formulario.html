@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav th:replace="layout :: nav"></nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header" th:text="${titulo}">Page Title</h1>
+                    </div>
+                </div>
+
+                <!-- ... Your content goes here ... -->
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" th:text="${opcion}">Panel title</h3>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <div class="row">
+                                            <div class="col-sm-4 col-sm-offset-4">
+                                                <div class="hero-widget well well-sm">
+                                                    <div class="icon">
+                                                        <i class="glyphicon glyphicon-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <form role="form" th:object="${medico}" th:action="@{/medico}" method="post">
+
+                                            <input type="hidden" th:field="*{id}" />
+                                            <input type="hidden" th:field="*{ipress.id}" />
+                                            <input type="hidden" th:field="*{estado}" />
+
+                                            <hr/>
+                                            <h5>Información Personal: </h5>
+                                            <hr/>
+
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{apePaterno}">Ape. Paterno</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{apePaterno}" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{apeMaterno}">Ape. Materno</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{apeMaterno}" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{nombre}">Nombres</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{nombre}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{documento.id}">Tipo Documento</label>
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control" th:field="*{documento.id}">
+                                                            <option th:each="documentoOpt : ${documentos}" th:value="${documentoOpt.id}" th:text="${documentoOpt.nombre}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{nroDocumento}">Nro. Documento</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{nroDocumento}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr/>
+                                            <h5>Información Profesional: </h5>
+                                            <hr/>
+
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{cmp}">CMP</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{cmp}" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{rne}">RNE</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{rne}" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8 form-group form-group-sm">
+                                                    <label class="col-sm-2 control-label" th:for="*{especialidad}">Especialidad</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" placeholder="" th:field="*{especialidad}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr/>
+
+                                            <div class="row">
+                                                <div class="col-sm-8 form-group form-group-sm">
+                                                    <label class="col-sm-2 control-label" th:for="*{ipress.nombre}">Ipress</label>
+                                                    <div class="col-sm-10 input-group">
+                                                        <input type="text" class="form-control" th:field="*{ipress.nombre}" disabled="true" />
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#ipressModal"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                    <div class="modal fade" id="ipressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title" id="myModalLabel">Ipress</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="panel panel-primary">
+                                                                        <div class="panel-heading">
+                                                                            <h3 class="panel-title">Seleccionar</h3>
+                                                                        </div>
+                                                                        <!-- /.panel-heading -->
+                                                                        <div class="panel-body">
+                                                                            <div class="table-responsive">
+                                                                                <table class="table table-striped table-bordered table-hover" id="table-datatable-1">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Código</th>
+                                                                                            <th>Nombre</th>
+                                                                                            <th>RUC</th>
+                                                                                            <th>Direccion</th>
+                                                                                            <th>Distrito</th>
+                                                                                            <th>Provincia</th>
+                                                                                            <th>Departamento</th>
+
+                                                                                            <th>Seleccionar</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr th:each="ipress: ${ipresses}" class="odd gradeX">
+
+                                                                                            <td th:text="${ipress.codigo}"></td>
+                                                                                            <td th:text="${ipress.nombre}"></td>
+                                                                                            <td th:text="${ipress.ruc}"></td>
+                                                                                            <td th:text="${ipress.direccion}"></td>
+                                                                                            <td th:text="${ipress.distrito.nombre}"></td>
+                                                                                            <td th:text="${ipress.distrito.provincia.nombre}"></td>
+                                                                                            <td th:text="${ipress.distrito.provincia.departamento.nombre}"></td>
+
+                                                                                            <td class="text-center"><a th:onclick="|checkIpress(${ipress.id}, '${ipress.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <!-- /.table-responsive -->
+                                                                        </div>
+                                                                        <!-- /.panel-body -->
+                                                                    </div>
+                                                                    <!-- /.panel -->
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
+                                                    <!-- /.modal -->
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{estado}">Estado</label>
+                                                    <div class="col-sm-8">
+                                                         <input type="checkbox" class="toggle-estado" data-on="Activo" data-off="Inactivo" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{fecRegistro}">Fecha Registro</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{fecRegistro}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{fecModificacion}">Fecha Modificación</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{fecModificacion}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{perfil}">Perfil</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{perfil}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr/>
+
+                                            <div class="row">
+                                                <div class="col-sm-2 col-sm-offset-4">
+                                                    <input type="submit" class="btn btn-primary" value="Guardar" />
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="button" th:onclick="|window.location.href='@{/medico}'|" class="btn btn-default" value="Cancelar" />
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <!-- /.col-lg-6 (nested) -->
+                                </div>
+                                <!-- /.row (nested) -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+    <!-- footer -->
+    <footer th:replace="layout :: footer"></footer>
+
+</body>
+
+</html>

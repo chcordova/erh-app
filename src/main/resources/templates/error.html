@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav th:replace="layout :: nav"></nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"> <span th:text="${error}"></span> </h1>
+                    </div>
+                </div>
+
+                <!-- ... Your content goes here ... -->
+                <!-- /.row -->
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                Error <span th:text="${status}"></span>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="row ">
+                                    <div class="col-md-4 ml-auto">
+                                        <span class="legend">Date</span>
+                                    </div>
+                                    <div class="col-md-8 text-muted small">
+                                        <span th:text="${timestamp}"></span>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-4 ml-auto">
+                                        <span class="legend">Path</span>
+                                    </div>
+                                    <div class="col-md-8 text-muted small">
+                                        <span th:text="${path}"></span>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-4 ml-auto">
+                                        <span class="legend">Error</span>
+                                    </div>
+                                    <div class="col-md-8 text-muted small">
+                                        <span th:text="${error}"></span>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-4 ml-auto">
+                                        <span class="legend">Status</span>
+                                    </div>
+                                    <div class="col-md-8 text-muted small">
+                                        <span th:text="${status}"></span>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-4 ml-auto">
+                                        <span class="legend">Message</span>
+                                    </div>
+                                    <div class="col-md-8 text-muted small">
+                                        <span th:text="${message}"></span>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-4 ml-auto">
+                                        <span class="legend">Exception</span>
+                                    </div>
+                                    <div class="col-md-8 text-muted small">
+                                        <span th:text="${exception}"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+
+                                <h5 class="card-title ">Los sentimos, Ocurrió un error. Dar clic en <a th:href="@{/}" class="active"><i class="fa fa-dashboard fa-fw"></i> Inicio</a> para retornar.</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+    <!-- footer -->
+    <footer th:replace="layout :: footer "></footer>
+
+</body>
+
+</html>

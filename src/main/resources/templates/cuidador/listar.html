@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav th:replace="layout :: nav"></nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div th:replace="layout :: alert"></div>
+                        <h1 class="page-header" th:text="${titulo}">Page Title</h1>
+                    </div>
+                </div>
+
+                <!-- ... Your content goes here ... -->
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" th:text="${opcion}">Panel title</h3>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="table-datatable-1">
+                                        <thead>
+                                            <tr>
+
+                                                <th>Ape. Paterno</th>
+                                                <th>Ape. Materno</th>
+                                                <th>Nombres</th>
+                                                <th>Tipo Doc.</th>
+                                                <th>Num. Doc.</th>
+                                                <th>Parentesco</th>
+
+                                                <th>Mostrar</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="cuidador: ${cuidadores}" class="odd gradeX">
+
+                                                <td th:text="${cuidador.apePaterno}"></td>
+                                                <td th:text="${cuidador.apeMaterno}"></td>
+                                                <td th:text="${cuidador.nombre}"></td>
+                                                <td th:text="${cuidador.documento.nombre}"></td>
+                                                <td th:text="${cuidador.nroDocumento}"></td>
+                                                <td th:text="${cuidador.parentesco.nombre}"></td>
+
+                                                <td class="text-center"><a class="btn btn-info btn-sm" th:href="@{'/cuidador/mostrar/' + ${cuidador.id}}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                                <td class="text-center"><a class="btn btn-warning btn-sm" th:href="@{'/cuidador/editar/' + ${cuidador.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                                                <td class="text-center"><a class="btn btn-danger btn-sm" th:href="@{'/cuidador/eliminar/'+ ${cuidador.id}}" onclick="return confirm('Estás seguro que quieres eliminar?');"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                                <div class="well well-sm text-left">
+                                    <input type="button" th:onclick="|window.location.href='@{/paciente(search=${paciente.nroDocumento})}'|" class="btn btn-default" value="Volver" />
+                                    <input type="button" th:onclick="|window.location.href='@{/cuidador/nuevo(pacienteId=${paciente.id})}'|" class="btn btn-primary" value="Nuevo" />
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+    <!-- footer -->
+    <footer th:replace="layout :: footer"></footer>
+
+</body>
+
+</html>

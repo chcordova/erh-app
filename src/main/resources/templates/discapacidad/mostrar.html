@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav th:replace="layout :: nav"></nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header" th:text="${titulo}">Page Title</h1>
+                    </div>
+                </div>
+
+                <!-- ... Your content goes here ... -->
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" th:text="${opcion}">Panel title</h3>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <form role="form" th:object="${discapacidad}">
+
+                                            <div class="row">
+                                                <div class="col-sm-8 form-group form-group-sm">
+                                                    <label class="col-sm-8 control-label" th:for="*{limitacionFuncional}">¿El paciente presenta alguna limitación funcional?</label>
+                                                    <div class="col-sm-2 col-sm-pull-0">
+                                                        <input class="form-control" placeholder="" th:id="*{limitacionFuncional}" th:name="*{limitacionFuncional}" th:value="*{limitacionFuncional.label=='Activo' ? 'Si' : 'No'}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 form-group form-group-sm">
+                                                    <label class="col-sm-6 control-label" th:for="*{detallelimitacionfuncional}">Si eligió SI en el campo anterior, especifique</label>
+                                                    <div class="col-sm-6 col-sm-pull-1">
+                                                        <textarea class="form-control" rows="3" placeholder="" th:field="*{detallelimitacionfuncional}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8 form-group form-group-sm">
+                                                    <label class="col-sm-8 control-label" th:for="*{inscritoConadis}">¿Inscrito en CONADIS?</label>
+                                                    <div class="col-sm-2 col-sm-pull-4">
+                                                        <input class="form-control" placeholder="" th:id="*{inscritoConadis}" th:name="*{inscritoConadis}" th:value="*{inscritoConadis.label=='Activo' ? 'Si' : 'No'}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-10 form-group form-group-sm">
+                                                    <label class="col-sm-6 control-label" th:for="*{detalleObservaciones}">Observaciones</label>
+                                                    <div class="col-sm-6 col-sm-pull-3">
+                                                        <textarea class="form-control" rows="3" placeholder="" th:field="*{detalleObservaciones}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <hr/>
+                                            <h5>Información del Paciente: </h5>
+                                            <hr/>
+
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-3 control-label" for="pacienteNombre">Nombre</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" placeholder="" id="pacienteNombre" name="pacienteNombre" th:value="*{paciente.nombre + ' ' + paciente.apePaterno + ' ' + paciente.apeMaterno}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{paciente.documento.nombre}">Tipo Documento</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{paciente.documento.nombre}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{paciente.nroDocumento}">Nro Documento</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{paciente.nroDocumento}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 form-group form-group-sm">
+                                                    <label class="col-sm-2 control-label" th:for="*{paciente.ipress.nombre}">Ipress</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" placeholder="" th:field="*{paciente.ipress.nombre}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr/>
+
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{fecRegistro}">Fecha Registro</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{fecRegistro}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{fecModificacion}">Fecha Modificación</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:field="*{fecModificacion}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" th:for="*{estado}">Estado</label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" placeholder="" th:id="*{estado}" th:name="*{estado}" th:value="*{estado.label}" disabled="true" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr/>
+
+                                            <div class="row">
+                                                <div class="col-sm-2 col-sm-offset-5 text-center" >
+                                                    <input type="button" th:onclick="|window.location.href='@{/paciente/{id}(id=${discapacidad.paciente.id})}/discapacidad'|" class="btn btn-default" value="Volver" />
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <!-- /.col-lg-6 (nested) -->
+                                </div>
+                                <!-- /.row (nested) -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+    <!-- footer -->
+    <footer th:replace="layout :: footer"></footer>
+
+</body>
+
+</html>
