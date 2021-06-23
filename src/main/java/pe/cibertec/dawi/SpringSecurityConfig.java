@@ -1,10 +1,13 @@
 package pe.cibertec.dawi;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 @EnableGlobalMethodSecurity(securedEnabled=true, prePostEnabled=true)
 @Configuration
@@ -15,31 +18,33 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/persona/**").hasAnyRole("ADMINISTRADOR")
-                .anyRequest().authenticated()
+                //.anyRequest().authenticated()
                 .and()
-                .formLogin()
-                //.successHandler(successHandler)
-                .loginPage("/login").permitAll()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
                 .logout().permitAll();
 
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS);
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("Administrador").password("12345").roles("ADMINISTRADOR")
+                .withUser("Administrador").password("{noop}12345").roles("ADMINISTRADOR")
                 .and()
-                .withUser("Director").password("12345").roles("DIRECTOR")
+                .withUser("Director").password("{noop}12345").roles("DIRECTOR")
                 .and()
-                .withUser("Master").password("12345").roles("MASTER")
+                .withUser("Master").password("{noop}12345").roles("MASTER")
                 .and()
-                .withUser("Medico").password("12345").roles("MEDICO")
+                .withUser("Medico").password("{noop}12345").roles("MEDICO")
                 .and()
-                .withUser("Paciente").password("12345").roles("PACIENTE");
+                .withUser("Paciente").password("{noop}12345").roles("PACIENTE");
     }
 
 }

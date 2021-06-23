@@ -26,11 +26,11 @@ public class UbiDistritoEntity implements Serializable {
     @NotBlank
     @Column(name = "distrito")
     private String nombre;
-    @ManyToOne
-    @JoinColumn(name = "idprovincia")
-    private UbiProvinciaEntity provincia;
     @NotBlank
     @Column(name = "coddistrito")
     private String codigo;
 
+    @ManyToOne
+    @JoinColumn(name = "idprovincia")
+    private UbiProvinciaEntity provincia;
 }
