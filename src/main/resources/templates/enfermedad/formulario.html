@@ -114,7 +114,7 @@
                                                                                             <td th:text="${cie10Carpeta.cie10Bloque.nombre}"></td>
                                                                                             <td th:text="${cie10Carpeta.cie10Bloque.cie10Categoria.nombre}"></td>
 
-                                                                                            <td class="text-center"><a th:onclick="|checkCie10(${cie10Carpeta.id}, '${cie10Carpeta.codigo}', '${cie10Carpeta.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+                                                                                            <td class="text-center"><a th:data-id="${cie10Carpeta.id}" th:data-codigo="${cie10Carpeta.codigo}" th:data-nombre="${cie10Carpeta.nombre}" onclick="checkCie10(this.getAttribute('data-id'), this.getAttribute('data-codigo'), this.getAttribute('data-nombre'))"><i class="fa fa-check-square-o fa-fw"></i></a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -180,7 +180,7 @@
                                                                                             <td th:text="${orphanet.codigo}"></td>
                                                                                             <td th:text="${orphanet.nombre}"></td>
 
-                                                                                            <td class="text-center"><a th:onclick="|checkOrphanet(${orphanet.id}, '${orphanet.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+                                                                                            <td class="text-center"><a th:data-id="${orphanet.id}" th:data-nombre="${orphanet.nombre}" onclick="checkOrphanet(this.getAttribute('data-id'), this.getAttribute('data-nombre'))"><i class="fa fa-check-square-o fa-fw"></i></a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>

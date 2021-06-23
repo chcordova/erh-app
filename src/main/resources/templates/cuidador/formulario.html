@@ -145,7 +145,8 @@
                                                                                             <td th:text="${distrito.nombre}"></td>
                                                                                             <td th:text="${distrito.provincia.nombre}"></td>
                                                                                             <td th:text="${distrito.provincia.departamento.nombre}"></td>
-                                                                                            <td class="text-center"><a th:onclick="|checkDistritoResidencia(${distrito.id}, '${distrito.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+
+                                                                                            <td class="text-center"><a th:data-id="${distrito.id}" th:data-nombre="${distrito.nombre}" onclick="checkDistritoResidencia(this.getAttribute('data-id'), this.getAttribute('data-nombre'))"><i class="fa fa-check-square-o fa-fw"></i></a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>

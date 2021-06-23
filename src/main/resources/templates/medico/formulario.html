@@ -167,7 +167,7 @@
                                                                                             <td th:text="${ipress.distrito.provincia.nombre}"></td>
                                                                                             <td th:text="${ipress.distrito.provincia.departamento.nombre}"></td>
 
-                                                                                            <td class="text-center"><a th:onclick="|checkIpress(${ipress.id}, '${ipress.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+                                                                                            <td class="text-center"><a th:data-id="${ipress.id}" th:data-nombre="${ipress.nombre}" onclick="checkIpress(this.getAttribute('data-id'), this.getAttribute('data-nombre'))"><i class="fa fa-check-square-o fa-fw"></i></a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>

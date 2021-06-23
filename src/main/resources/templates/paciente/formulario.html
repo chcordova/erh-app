@@ -191,7 +191,8 @@
                                                                                             <td th:text="${distrito.nombre}"></td>
                                                                                             <td th:text="${distrito.provincia.nombre}"></td>
                                                                                             <td th:text="${distrito.provincia.departamento.nombre}"></td>
-                                                                                            <td class="text-center"><a th:onclick="|checkDistritoNacimiento(${distrito.id}, '${distrito.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+
+                                                                                            <td class="text-center"><a th:data-id="${distrito.id}" th:data-nombre="${distrito.nombre}" onclick="checkDistritoNacimiento(this.getAttribute('data-id'), this.getAttribute('data-nombre'))"><i class="fa fa-check-square-o fa-fw"></i></a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -272,7 +273,8 @@
                                                                                             <td th:text="${distrito.nombre}"></td>
                                                                                             <td th:text="${distrito.provincia.nombre}"></td>
                                                                                             <td th:text="${distrito.provincia.departamento.nombre}"></td>
-                                                                                            <td class="text-center"><a th:onclick="|checkDistritoResidencia(${distrito.id}, '${distrito.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+
+                                                                                            <td class="text-center"><a th:data-id="${distrito.id}" th:data-nombre="${distrito.nombre}" onclick="checkDistritoResidencia(this.getAttribute('data-id'), this.getAttribute('data-nombre'))"><i class="fa fa-check-square-o fa-fw"></i></a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -377,7 +379,22 @@
                                                                                             <td th:text="${medico.rne}"></td>
                                                                                             <td th:text="${medico.ipress.nombre}"></td>
 
-                                                                                            <td class="text-center"><a th:onclick="|checkMedico(${medico.id}, '${medico.nombre}', '${medico.apePaterno}', '${medico.apeMaterno}', '${medico.especialidad}', '${medico.cmp}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+                                                                                            <td class="text-center"><a
+                                                                                                    th:data-id="${medico.id}"
+                                                                                                    th:data-nombre="${medico.nombre}"
+                                                                                                    th:data-apePaterno="${medico.apePaterno}"
+                                                                                                    th:data-apeMaterno="${medico.apeMaterno}"
+                                                                                                    th:data-especialidad="${medico.especialidad}"
+                                                                                                    th:data-cmp="${medico.cmp}"
+                                                                                                    onclick="checkMedico(
+                                                                                                        this.getAttribute('data-id'),
+                                                                                                        this.getAttribute('data-nombre'),
+                                                                                                        this.getAttribute('data-apePaterno'),
+                                                                                                        this.getAttribute('data-apeMaterno'),
+                                                                                                        this.getAttribute('data-especialidad'),
+                                                                                                        this.getAttribute('data-cmp'))">
+                                                                                                <i class="fa fa-check-square-o fa-fw"></i></a>
+                                                                                            </td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -462,7 +479,7 @@
                                                                                             <td th:text="${ipress.distrito.provincia.nombre}"></td>
                                                                                             <td th:text="${ipress.distrito.provincia.departamento.nombre}"></td>
 
-                                                                                            <td class="text-center"><a th:onclick="|checkIpress(${ipress.id}, '${ipress.nombre}')|"><i class="fa fa-check-square-o fa-fw"></i></a></td>
+                                                                                            <td class="text-center"><a th:data-id="${ipress.id}" th:data-nombre="${ipress.nombre}" onclick="checkIpress(this.getAttribute('data-id'), this.getAttribute('data-nombre'))"><i class="fa fa-check-square-o fa-fw"></i></a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
