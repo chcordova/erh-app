@@ -6,7 +6,11 @@ import pe.cibertec.dawi.common.AbstractConverter;
 import pe.cibertec.dawi.model.dto.CuidadorDto;
 import pe.cibertec.dawi.model.entity.CuidadorEntity;
 import pe.cibertec.dawi.model.enums.PerfilEnum;
-import pe.cibertec.dawi.service.*;
+import pe.cibertec.dawi.service.CuidadorService;
+import pe.cibertec.dawi.service.DocumentoService;
+import pe.cibertec.dawi.service.PacienteService;
+import pe.cibertec.dawi.service.ParentescoService;
+import pe.cibertec.dawi.service.UbiDistritoService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

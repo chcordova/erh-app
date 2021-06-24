@@ -3,9 +3,7 @@ package pe.cibertec.dawi.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.cibertec.dawi.model.entity.DirectorEntity;
 import pe.cibertec.dawi.model.entity.PacienteEntity;
-import pe.cibertec.dawi.repository.DirectorRepository;
 import pe.cibertec.dawi.repository.PacienteRepository;
 
 import java.util.List;

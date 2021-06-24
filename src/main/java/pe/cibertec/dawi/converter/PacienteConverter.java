@@ -8,7 +8,15 @@ import pe.cibertec.dawi.common.AbstractConverter;
 import pe.cibertec.dawi.model.dto.PacienteDto;
 import pe.cibertec.dawi.model.entity.PacienteEntity;
 import pe.cibertec.dawi.model.enums.PerfilEnum;
-import pe.cibertec.dawi.service.*;
+import pe.cibertec.dawi.service.AntecedenteFamiliarService;
+import pe.cibertec.dawi.service.CuidadorService;
+import pe.cibertec.dawi.service.DiscapacidadService;
+import pe.cibertec.dawi.service.DocumentoService;
+import pe.cibertec.dawi.service.EnfermedadService;
+import pe.cibertec.dawi.service.IpressService;
+import pe.cibertec.dawi.service.MedicoService;
+import pe.cibertec.dawi.service.PacienteService;
+import pe.cibertec.dawi.service.UbiDistritoService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

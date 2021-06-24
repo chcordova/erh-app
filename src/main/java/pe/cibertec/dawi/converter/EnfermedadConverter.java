@@ -5,7 +5,12 @@ import org.springframework.stereotype.Component;
 import pe.cibertec.dawi.common.AbstractConverter;
 import pe.cibertec.dawi.model.dto.EnfermedadDto;
 import pe.cibertec.dawi.model.entity.EnfermedadEntity;
-import pe.cibertec.dawi.service.*;
+import pe.cibertec.dawi.service.Cie10CarpetaService;
+import pe.cibertec.dawi.service.EnfermedadService;
+import pe.cibertec.dawi.service.MedicoService;
+import pe.cibertec.dawi.service.OrphanetService;
+import pe.cibertec.dawi.service.PacienteService;
+import pe.cibertec.dawi.service.TratamientoService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

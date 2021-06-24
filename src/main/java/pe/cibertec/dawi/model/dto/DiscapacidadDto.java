@@ -5,10 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pe.cibertec.dawi.model.enums.EstadoEnum;
-import pe.cibertec.dawi.model.enums.PerfilEnum;
 
 import java.io.Serializable;
-import java.util.Set;
 
 @Builder
 @Data

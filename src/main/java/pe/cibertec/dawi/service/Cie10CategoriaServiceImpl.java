@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.cibertec.dawi.model.entity.Cie10CategoriaEntity;
-import pe.cibertec.dawi.model.entity.UbiDepartamentoEntity;
 import pe.cibertec.dawi.repository.Cie10CategoriaRepository;
-import pe.cibertec.dawi.repository.UbiDepartamentoRepository;
 
 import java.util.List;
 
